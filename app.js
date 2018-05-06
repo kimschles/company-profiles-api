@@ -1,7 +1,3 @@
-// TODO: INSTALL PRE-REQS:
-//  npm install express cors body-parser morgan nodemon
-// Optional Extras:
-//  npm install monk e
 const express = require('express');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
@@ -16,17 +12,14 @@ app.use(cors({ origin: true, credentials: true }));
 // Optional Static file handler:
 // app.use('/', express.static('./build'))
 
-// TODO: ADD (MOUNT) YOUR MIDDLEWARE (ROUTES) HERE:
-app.use('/api/company', require('./routes/company'));
+app.use('/api/v1/company', require('./routes/company'));
 
-// These 2 `app.use` MUST be last `.use`'s
 app.use(notFound);
 app.use(errorHandler);
 
 function notFound(req, res, next) {
   const url = req.originalUrl;
   if (!/favicon\.ico$/.test(url) && !/robots\.txt$/.test(url)) {
-    // Don't log less important (automatic) browser requests
     console.error('[404: Requested file not found] ', url);
   }
   res.status(404).send({ error: 'Url not found', status: 404, url });

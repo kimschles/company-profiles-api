@@ -1,5 +1,3 @@
-// CHECK `TODO` NOTICES BELOW FILE!!!
-
 const { company } = require('../db');
 const router = (module.exports = require('express').Router());
 
